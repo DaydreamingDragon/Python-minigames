@@ -4,6 +4,11 @@ import time
 time.sleep(1)
 
 def rockPaperScissors():
+    # Intro
+    print("Welcome to rock, paper, scissors!")
+    time.sleep(1)
+
+    # Generate computer's choice
     computerChoice = random.randint(1, 3)
     if computerChoice == 1:
         computerChoice = "rock"
@@ -11,8 +16,8 @@ def rockPaperScissors():
         computerChoice = "paper"
     elif computerChoice == 3:
         computerChoice = "scissors"
-    print("Welcome to rock, paper, scissors!")
-    time.sleep(1)
+
+    # Get player's choice
     while True:
         playerChoice = input("What do you choose, rock, paper, or scissors?: ")    
         if playerChoice == "rock" or playerChoice == "paper" or playerChoice == "scissors":
@@ -20,6 +25,7 @@ def rockPaperScissors():
         else:
             print("Please say rock, paper, or scissors!")
 
+    # Generate suspense
     time.sleep(1)
     print("Rock..")
     time.sleep(1)
@@ -30,6 +36,7 @@ def rockPaperScissors():
     print("Shoot!")
     time.sleep(1)
 
+    # Evaluate both choices
     if computerChoice == playerChoice:
         print(f"It's a tie! The computer chose: {computerChoice}")
     elif (computerChoice == "rock" and playerChoice == "paper") or (computerChoice == "scissors" and playerChoice == "rock") or (computerChoice == "paper" and playerChoice == "scissors"):
@@ -157,5 +164,59 @@ def memoryGame():
             print(f"Game over!  Please enter an input next time! Score: {score}")
             quit()
 
-memoryGame()
+def hangman():
+    # Intro
+    print("Welcome to hangman!")
+    time.sleep(1)
+
+    # Initialize variables
+    words = ["computer", "coding", "bedsheet", "television", "running", "treadmill", "frisbee", "snake", "lantern", "trapezoid", "pyramid"]
+    word = words[random.randint(0, (len(words) - 1))]
+    attempts = 6
+    guessedLetters = []
                 
+    while attempts > 0:
+        # Print the word
+        print("Word: ", end="")
+        for char in word:
+            if char in guessedLetters:
+                print(f"{char}", end=" ")
+            else:
+                print(f"_", end=" ")
+        print("\n")
+        
+        # Get the user's guess
+        while True:
+            guess = input("Enter a letter to guess: ").lower()
+            try:
+                float(guess)
+                print("Please enter a letter!")
+            except ValueError:
+                if len(guess) == 1:
+                    if guess not in guessedLetters:
+                        break
+                    else:
+                        print("You already guessed that letter!")
+                else:
+                    print("Please enter a letter!")
+
+        guessedLetters.append(guess)
+
+        # Add suspense
+        print("Evaluating...")
+        time.sleep(1)
+
+        if guess not in word:
+            attempts -= 1
+            print(f"Your letter was not in the word!  You have {attempts} attempts remaining.")
+        elif guess in word:
+            print("Your guess was in the word!")
+
+        if all(letter in guessedLetters for letter in word):
+            print(f"Congrats, you guessed the word!  It was {word}.")
+            quit()
+
+    # If user fails to guess the word
+    print(f"You failed to guess the word!  The word was {word}.")
+
+hangman()
