@@ -1,8 +1,6 @@
 import random
 import time
 
-time.sleep(1)
-
 def rockPaperScissors():
     # Intro
     print("Welcome to rock, paper, scissors!")
@@ -219,4 +217,25 @@ def hangman():
     # If user fails to guess the word
     print(f"You failed to guess the word!  The word was {word}.")
 
-hangman()
+# Code to run minigames
+print("Welcome to python minigames!")
+time.sleep(1)
+while True:
+    minigame = input("What minigame would you like to play? There's rockpaperscissors, numberguess, coinflip, memory, and hangman: ")
+    if minigame == "rockpaperscissors":
+        rockPaperScissors()
+        quit()
+    elif minigame == "numberguess":
+        numberGuess()
+        quit()
+    elif minigame == "coinflip":
+        coinFlip()
+        quit()
+    elif minigame == "memory":
+        memoryGame()
+        quit()
+    elif minigame == "handman":
+        hangman()
+        quit()
+    else:
+        print("Please enter the minigame you want to play, no spaces or capital letters!")
