@@ -1,6 +1,8 @@
 import random
 import time
 
+time.sleep(1)
+
 def rockPaperScissors():
     computerChoice = random.randint(1, 3)
     if computerChoice == 1:
@@ -35,4 +37,29 @@ def rockPaperScissors():
     elif (computerChoice == "rock" and playerChoice == "scissors") or (computerChoice == "scissors" and playerChoice == "paper") or (computerChoice == "paper" and playerChoice == "rock"):
         print(f"You lost!  The computer chose: {computerChoice}")
 
-rockPaperScissors()
+def numberGuess():
+    number = random.randint(1, 100)
+    guesses = 0
+    guess = 0
+    print("Welcome to number guess!  Guess a number between 1 and 100, inclusive.")
+    time.sleep(1)
+
+    while True:
+        guess = input("What's your guess?  Please say an integer from 1 to 100, inclusive: ")
+        print("Calculating...")
+        time.sleep(1)
+        try:
+            guessInt = int(guess)
+            if guessInt == number:
+                print(f"You guessed the number!  It took you {guesses} tries.")
+                break
+            elif guessInt > number:
+                print(f"Incorrect!  Your guess was greater than the number.")
+                guesses += 1
+            elif guessInt < number:
+                print(f"Incorrect!  Your guess was less than the number.")
+                guesses += 1
+        except ValueError:
+            print("Please say an integer from 1 to 100, inclusive!")
+
+numberGuess()
