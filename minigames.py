@@ -118,13 +118,13 @@ def memoryGame():
     score = 0
 
     # Add a number to the list to start
-    sequence.append(random.randint(1, 9))
+    sequence.append(str(random.randint(1, 9)))
 
     while True:
         # Print each number in the list
         for char in sequence:
             print(f"{char}")
-            time.sleep(0.5)
+            time.sleep(0.85)
 
         # Print a whole bunch of new lines to clear the sequence
         time.sleep(1)
@@ -133,29 +133,29 @@ def memoryGame():
 
         # Get the user's guess
         guess = input("Repeat the combination.  Remember, no spaces or new lines between new numbers: ")
-        
+
         # Evaluate the user's guess
         if guess:
             if len(guess) != len(sequence):
                 # If the user's input length does not equal length of the list then it's wrong
                 print(f"Game over! Score: {score}")
-                print("2")
+                quit()
 
-            for i in range(len(guess)):
+            for j in range(len(sequence)):
                 # If it doesn't match, end the code and say game over and print the score
-                if guess[i] != sequence[i]:
+                if guess[j] != sequence[j]:
                     print(f"Game over! Score: {score}")
-                    print("3")
+                    quit()
 
             # If it does, append another color to the list, add 1 to score, and repeat the function
-            print("Correct!  Adding 1 letter...")
-            sequence.append(random.randint(1, 9))
+            print("Correct!  Adding 1 number...")
+            sequence.append(str(random.randint(1, 9)))
             score += 1
             time.sleep(1)
         # If the user doesn't input anything
         else:
             print(f"Game over!  Please enter an input next time! Score: {score}")
-            print("1")
+            quit()
 
 memoryGame()
                 
